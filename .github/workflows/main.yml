@@ -1,13 +1,14 @@
 name: Ejecutable Automatico
+
 on:
   push:
-    [cite_start]branches: [ main ] # Se activa al subir cambios 
+    [cite_start]branches: [ main ] # Se activa al realizar un "push" [cite: 12, 40]
   pull_request:
-    [cite_start]branches: [ main ] # Se activa al solicitar unión [cite: 12, 41]
+    [cite_start]branches: [ main ] # Se activa al realizar un "pull request" [cite: 12, 41]
 
 jobs:
   build:
-    [cite_start]runs-on: windows-latest # Usamos Windows para generar el .exe [cite: 31]
+    [cite_start]runs-on: windows-latest # Configuración para generar el .exe [cite: 31, 47]
     steps:
       - name: Descargar codigo
         uses: actions/checkout@v4
@@ -15,18 +16,18 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
-          [cite_start]python-version: '3.10' [cite: 14, 43]
+          [cite_start]python-version: '3.10' # Configura el entorno de Python [cite: 14, 43]
 
       - name: Instalar librerias
         run: |
-          pip install PySide6 pyinstaller 
+          pip install PySide6 pyinstaller # Instala dependencias necesarias [cite: 15, 44]
 
       - name: Crear archivo EXE
         run: |
-          pyinstaller --onefile --windowed main.py [cite: 16, 46]
+          pyinstaller --onefile --windowed main.py # Convierte script a ejecutable [cite: 16, 46]
 
       - name: Guardar el ejecutable (Artifact)
         uses: actions/upload-artifact@v4
         with:
           name: MiApp-Windows
-          [cite_start]path: dist/*.exe [cite: 17, 48]
+          [cite_start]path: dist/*.exe # Genera un artifact descargable [cite: 17, 48]
