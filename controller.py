@@ -2,12 +2,11 @@ class TaskController:
     def __init__(self, model, view):
         self.model = model
         self.view = view
-        
-        # Conectar el botón con la función
-        self.view.add_button.clicked.connect(self.add_task_to_model)
+        # Conexión vital: al hacer clic, se ejecuta la lógica
+        self.view.add_button.clicked.connect(self.handle_add_task)
 
-    def add_task_to_model(self):
-        task_text = self.view.task_input.text()
-        if self.model.转换_add_task(task_text):
-            self.view.task_list.addItem(task_text)
-            self.view.task_input.clear()
+    def handle_add_task(self):
+        text = self.view.task_input.text()
+        if self.model.add_task(text):
+            self.view.task_list.addItem(text) # Actualiza la vista
+            self.view.task_input.clear()      # Limpia el campo

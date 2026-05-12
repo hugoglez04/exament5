@@ -4,18 +4,16 @@ class TaskView(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Gestor de Tareas DESIN")
-        self.resize(400, 300)
+        self.resize(400, 400)
 
-        # Layout principal
         self.layout = QVBoxLayout()
         self.central_widget = QWidget()
         self.central_widget.setLayout(self.layout)
         self.setCentralWidget(self.central_widget)
 
-        # Componentes
-        self.label = QLabel("Introduce una nueva tarea:")
+        self.label = QLabel("Escribe una tarea y pulsa el botón:")
         self.task_input = QLineEdit()
-        self.add_button = QPushButton("Añadir Tarea")
+        self.add_button = QPushButton("Añadir a la lista")
         self.task_list = QListWidget()
 
         self.layout.addWidget(self.label)
